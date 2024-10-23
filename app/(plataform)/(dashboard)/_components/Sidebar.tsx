@@ -58,6 +58,8 @@ export const Sidebar = ({
                 </div>
                 <div className='space-y-2'>
                     <NavItem.Skeleton />
+                    <NavItem.Skeleton />
+                    <NavItem.Skeleton />
                 </div>
             </>
         )

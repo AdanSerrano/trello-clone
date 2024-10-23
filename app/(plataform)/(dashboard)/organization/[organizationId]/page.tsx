@@ -1,19 +1,14 @@
-import { Board } from './Board'
-import { CreateBoard } from '@/actions/create-board'
-import { Form } from './Form'
-import React from 'react'
-import { Tilt_Neon } from 'next/font/google'
-import { db } from '@/lib/db'
+import { BoardList } from "./_components/BoardList";
+import { Info } from "./_components/Info";
+import { Separator } from "@/components/ui/separator";
 
 export default async function OrganizationIdPage() {
-    const boards = await db.board.findMany()
     return (
-        <div className='flex flex-col space-y-4'>
-            <Form />
-            <div className='space-y-2'>
-                {boards.map((board) => (
-                    <Board key={board.id} id={board.id} title={board.title} />
-                ))}
+        <div className='w-full mb-20'>
+            <Info />
+            <Separator className="my-4" />
+            <div className="px-2 md:px-4">
+                <BoardList />
             </div>
         </div>
     )
