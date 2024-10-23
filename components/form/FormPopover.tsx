@@ -5,6 +5,7 @@ import { Popover, PopoverClose, PopoverContent, PopoverTrigger } from '@/compone
 import { Button } from '../ui/button';
 import { FormButton } from './FormButton';
 import { FormInput } from './FormInput';
+import { FormPicker } from './FormPicker';
 import React from 'react'
 import { X } from 'lucide-react';
 import { createBoard } from '@/actions/create-board';
@@ -37,9 +38,10 @@ export const FormPopover = ({
     })
 
     const onSubmit = (formData: FormData) => {
-
         const title = formData.get('title') as string;
-        execute({ title })
+        const image = formData.get('image') as string;
+        console.log(image)
+        execute({ title, image })
     }
     return (
         <Popover>
@@ -67,6 +69,10 @@ export const FormPopover = ({
 
                 <form action={onSubmit} className='space-y-4'>
                     <div className='space-y-4'>
+                        <FormPicker
+                            id='image'
+                            errors={FieldErrors}
+                        />
                         <FormInput
                             id='title'
                             label='Board Title'
