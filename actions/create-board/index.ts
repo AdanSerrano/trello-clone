@@ -25,13 +25,6 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         imageUserName,
     ] = image.split('|')
 
-    console.log({
-        imageId,
-        imageThumbUrl,
-        imageFullUrl,
-        imageLinkHTML,
-        imageUserName
-    })
     if (!imageId || !imageThumbUrl || !imageFullUrl || !imageLinkHTML || !imageUserName) {
         return {
             error: 'Missing field. Failed to create board'
@@ -52,7 +45,6 @@ const handler = async (data: InputType): Promise<ReturnType> => {
                 imageUserName
             }
         })
-        console.log({ board })
     } catch (error) {
         return {
             error: "Failed to create board"

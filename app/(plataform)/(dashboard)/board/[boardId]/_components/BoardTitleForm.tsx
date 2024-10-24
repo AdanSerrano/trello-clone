@@ -36,7 +36,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
         setTimeout(() => {
             inputRef.current?.focus();
             inputRef.current?.select()
-        }, 5000);
+        }, 3000);
     }
 
     const disabledEditing = () => {
