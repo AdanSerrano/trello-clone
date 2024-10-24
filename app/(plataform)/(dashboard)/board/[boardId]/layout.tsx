@@ -61,7 +61,7 @@ export default async function BoardLayout({
                 backgroundImage: `url(${boardId.imageFullUrl})`
             }}
         >
-            <BoardNavbar id={params.boardId} />
+            <BoardNavbar data={boardId} />
             <div className='absolute inset-0 bg-black/30' />
             <main className='relative pt-28 h-full'>
                 {children}
