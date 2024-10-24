@@ -2,9 +2,27 @@ import { HelpCircle, User2 } from 'lucide-react'
 
 import { FormPopover } from '@/components/form/FormPopover'
 import { Hint } from '@/components/Hint'
+import Link from 'next/link'
 import React from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
+import { auth } from '@clerk/nextjs/server'
+import { db } from '@/lib/db'
+import { redirect } from 'next/navigation'
 
-export const BoardList = () => {
+export const BoardList = async () => {
+    const { orgId } = auth()
+    if (!orgId) {
+        redirect(`/select-org`)
+    }
+
+    const boards = await db.board.findMany({
+        where: {
+            orgId
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
     return (
         <div className='space-y-4'>
             <div className='flex items-center font-semibold text-lg text-neutral-700'>
@@ -12,6 +30,19 @@ export const BoardList = () => {
                 Yours Bords
             </div>
             <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'>
+                {boards.map((board) => (
+                    <Link
+                        href={`/board/${board.id}`}
+                        key={board.id}
+                        className='group aspect-video relative bg-no-repeat bg-center bg-cover bg-sky-700 rounded-sm h-full w-full p-2 overflow-hidden'
+                        style={{ backgroundImage: `url(${board.imageThumbUrl})` }}
+                    >
+                        <div className='absolute inset-0 bg-black/30 group-hover:bg-black/40 transition' />
+                        <p className='relative font-semibold text-white'>
+                            {board.title}
+                        </p>
+                    </Link>
+                ))}
                 <FormPopover
                     side='right'
                     sideOffset={10}
@@ -35,3 +66,19 @@ export const BoardList = () => {
         </div>
     )
 }
+
+
+BoardList.Skeleton = function BoardListSkeleton() {
+    return (
+        <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'>
+            <Skeleton className='aspect-video h-full w-full p-2' />
+            <Skeleton className='aspect-video h-full w-full p-2' />
+            <Skeleton className='aspect-video h-full w-full p-2' />
+            <Skeleton className='aspect-video h-full w-full p-2' />
+            <Skeleton className='aspect-video h-full w-full p-2' />
+            <Skeleton className='aspect-video h-full w-full p-2' />
+            <Skeleton className='aspect-video h-full w-full p-2' />
+            <Skeleton className='aspect-video h-full w-full p-2' />
+        </div>
+    );
+};
