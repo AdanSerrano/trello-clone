@@ -61,7 +61,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         return { error: "Failed to create List" }
     }
 
-    revalidatePath(`/list/${boardId}`)
+    revalidatePath(`/board/${boardId}`)
     return { data: card }
 }
 
