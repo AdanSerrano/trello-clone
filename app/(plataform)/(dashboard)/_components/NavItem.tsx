@@ -45,16 +45,16 @@ export const NavItem = ({
             icon: <Activity className='size-4 mr-2' />,
             href: `/organization/${organization.id}/activity`
         },
-        {
-            label: "Settings",
-            icon: <Settings className='size-4 mr-2' />,
-            href: `/organization/${organization.id}/settings`
-        },
-        {
-            label: "Billing",
-            icon: <CreditCard className='size-4 mr-2' />,
-            href: `/organization/${organization.id}/billing`
-        },
+        // {
+        //     label: "Settings",
+        //     icon: <Settings className='size-4 mr-2' />,
+        //     href: `/organization/${organization.id}/settings`
+        // },
+        // {
+        //     label: "Billing",
+        //     icon: <CreditCard className='size-4 mr-2' />,
+        //     href: `/organization/${organization.id}/billing`
+        // },
     ];
 
 
