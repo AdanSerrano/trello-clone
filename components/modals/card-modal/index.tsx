@@ -2,6 +2,7 @@
 
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 
+import { Actions } from './Actions'
 import { CardWithList } from '@/types'
 import { Description } from './Description'
 import { HeaderModal } from './HeaderModal'
@@ -40,6 +41,10 @@ export const CardModal = () => {
                             )}
                         </div>
                     </div>
+                    {!dataCard
+                        ? <Actions.Skeleton />
+                        : <Actions data={dataCard} />
+                    }
                 </div>
             </DialogContent>
         </Dialog>
