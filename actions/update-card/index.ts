@@ -1,9 +1,11 @@
 'use server'
 
+import { ACTION, ENTITY_TYPE } from "@prisma/client"
 import { InputType, ReturnType } from "./types"
 
 import { UpdateCard } from "./schema"
 import { auth } from "@clerk/nextjs/server"
+import { createAuditLog } from "@/lib/create-audit-log"
 import { createSafeAction } from "@/lib/create-safe-actions"
 import { db } from "@/lib/db"
 import { revalidatePath } from "next/cache"
@@ -34,6 +36,12 @@ const handler = async (data: InputType): Promise<ReturnType> => {
             }
         })
 
+        await createAuditLog({
+            entityTitle: card.title,
+            entityId: card.id,
+            entityType: ENTITY_TYPE.CARD,
+            action: ACTION.UPDATED
+        })
     } catch (error) {
         console.log(error)
         return { error: "Failed to update card" }

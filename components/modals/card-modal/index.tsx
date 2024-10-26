@@ -3,6 +3,8 @@
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 
 import { Actions } from './Actions'
+import { Activity } from './Activity'
+import { AuditLog } from '@prisma/client'
 import { CardWithList } from '@/types'
 import { Description } from './Description'
 import { HeaderModal } from './HeaderModal'
@@ -18,6 +20,11 @@ export const CardModal = () => {
     const { data: dataCard } = useQuery<CardWithList>({
         queryKey: ["card", id],
         queryFn: () => fetcher(`/api/cards/${id}`)
+    })
+
+    const { data: dataAuditLog } = useQuery<AuditLog[]>({
+        queryKey: ["card-logs", id],
+        queryFn: () => fetcher(`/api/cards/${id}/logs`)
     })
 
     return (
@@ -38,6 +45,11 @@ export const CardModal = () => {
                                 <Description.Skeleton />
                             ) : (
                                 <Description data={dataCard} />
+                            )}
+                            {!dataAuditLog ? (
+                                <Activity.Skeleton />
+                            ) : (
+                                <Activity items={dataAuditLog} />
                             )}
                         </div>
                     </div>

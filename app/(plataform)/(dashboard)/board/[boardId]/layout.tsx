@@ -4,7 +4,6 @@ import { BoardNavbar } from './_components/BoardNavbar';
 import React from 'react'
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
-import { title } from 'process';
 
 export async function generateMetadata({
     params

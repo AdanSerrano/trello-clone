@@ -27,7 +27,10 @@ export const HeaderModal = ({
         onSuccess: (data) => {
             queryClient.invalidateQueries({
                 queryKey: ["card", data.id]
-            })
+            });
+            queryClient.invalidateQueries({
+                queryKey: ["card-logs", data.id]
+            });
             toast.success(`Rename to "${data.title}"`)
             setTitle(data.title)
         },

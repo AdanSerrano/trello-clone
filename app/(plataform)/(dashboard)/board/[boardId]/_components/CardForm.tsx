@@ -1,11 +1,10 @@
 import { Plus, X } from 'lucide-react';
-import React, { ElementRef, KeyboardEventHandler, RefObject, forwardRef, useRef } from 'react'
+import React, { ElementRef, KeyboardEventHandler, forwardRef, useRef } from 'react'
 import { useEventListener, useOnClickOutside } from 'usehooks-ts';
 
 import { Button } from '@/components/ui/button';
 import { FormButton } from '@/components/form/FormButton';
 import { FormTextarea } from '@/components/form/FormTextarea';
-import { Textarea } from '@/components/ui/textarea';
 import { createCard } from '@/actions/create-card';
 import { toast } from 'sonner';
 import { useAction } from '@/hooks/use-action';

@@ -2,9 +2,6 @@ import { Board } from '@prisma/client';
 import { BoardOptions } from './BoardOptions';
 import { BoardTitleForm } from './BoardTitleForm';
 import React from 'react'
-import { auth } from '@clerk/nextjs/server';
-import { db } from '@/lib/db';
-import { redirect } from 'next/navigation';
 
 interface BoardNavbarProps {
     data: Board;
